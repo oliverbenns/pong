@@ -1,0 +1,21 @@
+{
+  "name": "pong",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oliverbenns/pong.git"
+  },
+  "author": "oliverbenns",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oliverbenns/pong/issues"
+  },
+  "homepage": "https://github.com/oliverbenns/pong#readme"
+}
