@@ -18,6 +18,10 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.webpack.js', '.js'],
+    modulesDirectories: [
+      'app',
+      'node_modules',
+    ],
   },
 
   module: {
