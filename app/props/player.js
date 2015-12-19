@@ -1,5 +1,3 @@
-import canvas from 'canvas';
-import constants from '_constants';
 import Prop from 'props/prop';
 
 export default class Player extends Prop {
@@ -10,5 +8,13 @@ export default class Player extends Prop {
     this.width = 10;
   }
 
+  // Players can only move Y axis.
+  move(y) {
+    super.move(0, y);
+  }
+
+  // For mouse move.
+  moveTo(y) {
+    super.moveTo(this.positionX, y);
   }
 }
