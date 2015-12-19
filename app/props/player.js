@@ -1,16 +1,14 @@
 import canvas from 'canvas';
 import constants from '_constants';
+import Prop from 'props/prop';
 
-export default class Player {
+export default class Player extends Prop {
   constructor() {
+    super();
+
     this.height = 20;
     this.width = 10;
   }
 
-  spawn(positionX, positionY) {
-    canvas.context.beginPath();
-    canvas.context.rect(positionX, positionY, this.width, this.height);
-    canvas.context.fillStyle = constants.COLORS.PROPS;
-    canvas.context.fill();
   }
 }
