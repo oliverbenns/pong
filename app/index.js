@@ -6,9 +6,12 @@ const playerOne = new Player();
 const playerTwo = new Player();
 const menu = new Menu();
 
-playerOne.spawn(5, 50);
-playerTwo.spawn(canvas.width - 15, 50);
+
+menu.render();
+
 setTimeout(function() {
-  menu.render();
+  canvas.clear();
+  playerOne.spawn(5, 50);
+  playerTwo.spawn(canvas.width - 15, 50);
 }, 800);
 
