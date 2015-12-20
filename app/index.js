@@ -1,4 +1,5 @@
 import Player from 'props/player';
+import canvas from 'canvas';
 
 const playerOne = new Player();
 const playerTwo = new Player();
