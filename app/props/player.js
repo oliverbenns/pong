@@ -4,7 +4,7 @@ export default class Player extends Prop {
   constructor() {
     super();
 
-    this.height = 20;
+    this.height = 60;
     this.width = 10;
   }
 
