@@ -8,13 +8,13 @@ export default class Menu {
         label: 'Play',
         onClick: () => {
           console.log('Go to new game');
-        }
+        },
       },
       {
         label: 'Settings',
         onClick: () => {
           console.log('Go to settings page');
-        }
+        },
       },
     ];
   }
@@ -34,4 +34,4 @@ export default class Menu {
     canvas.clear();
     this.renderItems();
   }
-};
+}
