@@ -1,32 +1,38 @@
 import canvas from 'canvas';
+import mouse from 'lib/mouse';
 // http://stackoverflow.com/questions/16628184/add-onclick-and-onmouseover-to-canvas-element
 
 export default class Clickable {
-  constructor(id, x, y, width, height, fill) {
+  constructor(id, x, y, width, height, fn) {
     this.x = x;
     this.y = y;
     this.id = id;
     this.width = width;
     this.height = height;
-    this.fill = fill || 'gray';
-    this.redraw(this.x, this.y);
-    return (this);
-  }
-
-  redraw(x, y) {
-    this.x = x || this.x;
-    this.y = y || this.y;
-    this.draw();
-    return (this);
+    this.fn = fn;
   }
 
   draw() {
     canvas.context.save();
     canvas.context.beginPath();
-    canvas.context.fillStyle = this.fill;
+    canvas.context.fillStyle = 'red';
+    // canvas.context.fillStyle = 'rgba(0, 0, 0, 0)';
     canvas.context.rect(this.x, this.y, this.width, this.height);
     canvas.context.fill();
     canvas.context.restore();
+  }
+
+  onClick(event) {
+    const coords = mouse.getCoordinates(event);
+
+    if (this.isPointInside(coords.x, coords.y)) {
+      this.fn();
+    }
+  }
+
+  render() {
+    this.draw(this.x, this.y);
+    canvas.addEventListener('click', this.onClick.bind(this));
   }
 
   isPointInside(x, y) {

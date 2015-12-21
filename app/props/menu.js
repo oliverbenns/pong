@@ -1,5 +1,6 @@
 import constants from '_constants';
 import canvas from 'canvas';
+import Clickable from 'props/clickable';
 
 export default class Menu {
   constructor() {
@@ -33,5 +34,10 @@ export default class Menu {
   render() {
     canvas.clear();
     this.renderItems();
+    const foo = new Clickable('Red-Rectangle', 15, 35, 65, 60, () => {
+      console.log('testing!', this);
+    });
+
+    foo.render();
   }
 }
