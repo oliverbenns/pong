@@ -24,7 +24,15 @@ export default class Menu {
     this.items.map((item, index) => {
       const x = canvas.width / 2;
       const y = 50 * (index + 1);
-      canvas.context.font = '24px Helvetica';
+
+      const fontSize = 24;
+      const clickHeight = fontSize * 1.5;
+      const clickWidth = 150;
+
+      const clickableArea = new Clickable('Red-Rectangle', x - (clickWidth / 2), y - fontSize, clickWidth, clickHeight, item.onClick);
+      clickableArea.render();
+
+      canvas.context.font = `${fontSize}px Helvetica`;
       canvas.context.textAlign = 'center';
       canvas.context.fillStyle = constants.COLORS.PROPS;
       canvas.context.fillText(item.label, x, y);
@@ -34,10 +42,5 @@ export default class Menu {
   render() {
     canvas.clear();
     this.renderItems();
-    const foo = new Clickable('Red-Rectangle', 15, 35, 65, 60, () => {
-      console.log('testing!', this);
-    });
-
-    foo.render();
   }
 }
