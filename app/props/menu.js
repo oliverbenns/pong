@@ -1,6 +1,7 @@
 import constants from '_constants';
 import canvas from 'canvas';
 import Clickable from 'props/clickable';
+import Game from 'lib/game';
 
 export default class Menu {
   constructor() {
@@ -8,7 +9,7 @@ export default class Menu {
       {
         label: 'Play',
         onClick: () => {
-          console.log('Go to new game');
+          const game = new Game();
         },
       },
       {
