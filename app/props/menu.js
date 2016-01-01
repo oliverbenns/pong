@@ -29,7 +29,7 @@ export default class Menu {
       const clickHeight = fontSize * 1.5;
       const clickWidth = 150;
 
-      const clickableArea = new Clickable('Red-Rectangle', x - (clickWidth / 2), y - fontSize, clickWidth, clickHeight, item.onClick);
+      const clickableArea = new Clickable(x - (clickWidth / 2), y - fontSize, clickWidth, clickHeight, item.onClick);
       clickableArea.render();
 
       canvas.context.font = `${fontSize}px Helvetica`;

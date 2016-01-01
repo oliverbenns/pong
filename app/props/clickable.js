@@ -3,10 +3,9 @@ import mouse from 'lib/mouse';
 // http://stackoverflow.com/questions/16628184/add-onclick-and-onmouseover-to-canvas-element
 
 export default class Clickable {
-  constructor(id, x, y, width, height, fn) {
+  constructor(x, y, width, height, fn) {
     this.x = x;
     this.y = y;
-    this.id = id;
     this.width = width;
     this.height = height;
     this.fn = fn;
