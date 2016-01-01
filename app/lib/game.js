@@ -16,6 +16,7 @@ export default class Game {
     playerOne.spawn(5, 50);
     playerTwo.spawn(canvas.width - 15, 50);
 
-    mouse.onMove((x, y) => playerOne.moveTo(y)); // This is not working here, unsure why.
+    mouse.onMove((x, y) => playerOne.moveTo(y));
+
   }
 }
