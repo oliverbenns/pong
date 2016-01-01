@@ -1,5 +1,6 @@
 import Player from 'props/player';
 import canvas from 'canvas';
+import mouse from 'lib/mouse';
 
 export default class Game {
   constructor() {
@@ -14,5 +15,7 @@ export default class Game {
 
     playerOne.spawn(5, 50);
     playerTwo.spawn(canvas.width - 15, 50);
+
+    mouse.onMove((x, y) => playerOne.moveTo(y)); // This is not working here, unsure why.
   }
 }

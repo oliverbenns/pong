@@ -26,4 +26,9 @@ export default class Prop {
     this.delete();
     this.spawn(positionX, positionY);
   }
+
+  moveTo(x, y) {
+    this.delete();
+    this.spawn(x, y);
+  }
 }
