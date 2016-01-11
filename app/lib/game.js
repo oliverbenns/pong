@@ -1,4 +1,5 @@
 import Player from 'props/player';
+import Net from 'props/net';
 import canvas from 'canvas';
 import mouse from 'lib/mouse';
 
@@ -12,9 +13,11 @@ export default class Game {
 
     const playerOne = new Player();
     const playerTwo = new Player();
+    const net = new Net();
 
     playerOne.spawn(5, 50);
     playerTwo.spawn(canvas.width - 15, 50);
+    net.spawn();
 
     mouse.onMove((x, y) => playerOne.moveTo(y));
 
