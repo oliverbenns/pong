@@ -10,13 +10,16 @@ export default class Net extends Prop {
 
   // Players can only move Y axis.
   spawn() {
-    let i = 0;
+    let positionY = 0;
 
-    while (i < this.height) {
-      const position = i * 40;
-      const line = new Prop(this.width, 20);
-      line.spawn((canvas.width / 2) - (this.width / 2), position);
-      i++;
+    while (positionY < this.height) {
+      const line = new Prop();
+      line.width = this.width;
+      line.height = 20;
+
+      line.spawn((canvas.width / 2) - (this.width / 2), positionY);
+
+      positionY += 40;
     }
   }
 }
