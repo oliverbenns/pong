@@ -1,4 +1,5 @@
 import Prop from 'props/prop';
+import canvas from 'canvas';
 
 export default class Player extends Prop {
   constructor() {
@@ -15,6 +16,8 @@ export default class Player extends Prop {
 
   // For mouse move.
   moveTo(y) {
-    super.moveTo(this.positionX, y);
+    const maxY = canvas.height - this.height;
+
+    super.moveTo(this.positionX, (y > maxY) ? maxY : y);
   }
 }
