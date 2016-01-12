@@ -2,6 +2,11 @@ import constants from '_constants';
 import canvas from 'canvas';
 
 export default class Prop {
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+
   draw(color) {
     canvas.context.beginPath();
     canvas.context.rect(this.positionX, this.positionY, this.width, this.height);

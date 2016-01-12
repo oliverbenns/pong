@@ -3,10 +3,7 @@ import canvas from 'canvas';
 
 export default class Player extends Prop {
   constructor() {
-    super();
-
-    this.height = 60;
-    this.width = 10;
+    super(10, 60);
   }
 
   // Players can only move Y axis.
