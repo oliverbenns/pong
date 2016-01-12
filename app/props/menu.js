@@ -10,12 +10,14 @@ export default class Menu {
         label: 'Play',
         onClick: () => {
           const game = new Game();
+          this.destroy(); // from clickable - need to prevent duplication here.
         },
       },
       {
         label: 'Settings',
         onClick: () => {
           console.log('Go to settings page');
+          this.destroy(); // from clickable - need to prevent duplication here.
         },
       },
     ];
@@ -31,15 +33,22 @@ export default class Menu {
       const clickWidth = 150;
 
 
-      const clickableArea = new Clickable(clickWidth, clickHeight, x - (clickWidth / 2), y - fontSize, item.onClick);
+      const clickable = new Clickable(clickWidth, clickHeight, x - (clickWidth / 2), y - fontSize, item.onClick);
 
-      clickableArea.render();
+      clickable.render();
 
       canvas.context.font = `${fontSize}px Helvetica`;
       canvas.context.textAlign = 'center';
       canvas.context.fillStyle = constants.COLORS.PROPS;
       canvas.context.fillText(item.label, x, y);
+
+      item.clickable = clickable;
+      return item;
     });
+  }
+
+  destroy() {
+    this.items.forEach(item => item.clickable.destroy());
   }
 
   render() {

@@ -20,6 +20,7 @@ export default class Clickable extends Prop {
   }
 
   onClick(event) {
+    console.log('event', event);
     const coords = mouse.getCoordinates(event);
 
     if (this.isPointInside(coords.x, coords.y)) {
@@ -28,8 +29,12 @@ export default class Clickable extends Prop {
   }
 
   render() {
-    canvas.addEventListener('click', this.onClick.bind(this));
     this.draw(this.positionX, this.positionY);
+    canvas.addEventListener('click', this.onClick);
+  }
+
+  destroy() {
+    canvas.removeEventListener('click', this.onClick);
   }
 
   isPointInside(x, y) {
