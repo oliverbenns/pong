@@ -10,17 +10,21 @@ export default class Menu {
         label: 'Play',
         onClick: () => {
           const game = new Game();
-          this.destroy(); // from clickable - need to prevent duplication here.
+
         },
       },
       {
         label: 'Settings',
         onClick: () => {
           console.log('Go to settings page');
-          this.destroy(); // from clickable - need to prevent duplication here.
         },
       },
     ];
+  }
+
+  onClick(item) {
+    item.onClick();
+    this.destroy();
   }
 
   renderItems() {
@@ -32,8 +36,7 @@ export default class Menu {
       const clickHeight = fontSize * 1.5;
       const clickWidth = 150;
 
-
-      const clickable = new Clickable(clickWidth, clickHeight, x - (clickWidth / 2), y - fontSize, item.onClick);
+      const clickable = new Clickable(clickWidth, clickHeight, x - (clickWidth / 2), y - fontSize, this.onClick.bind(this, item));
 
       clickable.render();
 
