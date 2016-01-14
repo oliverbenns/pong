@@ -3,7 +3,7 @@ import canvas from 'canvas';
 
 export default class Net extends Prop {
   constructor() {
-    super(8, canvas.height);
+    super(null, null, 8, canvas.height);
   }
 
   // Players can only move Y axis.

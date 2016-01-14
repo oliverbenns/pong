@@ -3,7 +3,7 @@ import canvas from 'canvas';
 
 export default class Player extends Prop {
   constructor() {
-    super(10, 60);
+    super(null, null, 10, 60);
   }
 
   // Players can only move Y axis.

@@ -2,7 +2,9 @@ import constants from '_constants';
 import canvas from 'canvas';
 
 export default class Prop {
-  constructor(width, height) {
+  constructor(x, y, width, height) {
+    this.positionX = x || 0;
+    this.positionY = y || 0;
     this.width = width;
     this.height = height;
   }
@@ -26,10 +28,11 @@ export default class Prop {
   }
 
   move(x, y) {
-    const positionX = this.positionX + x;
-    const positionY = this.positionY + y;
     this.delete();
-    this.spawn(positionX, positionY);
+
+    this.positionX += x;
+    this.positionY += y;
+    this.spawn(this.positionX, this.positionY);
   }
 
   moveTo(x, y) {

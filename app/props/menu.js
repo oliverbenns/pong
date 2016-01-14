@@ -36,7 +36,7 @@ export default class Menu {
       const clickHeight = fontSize * 1.5;
       const clickWidth = 150;
 
-      const clickable = new Clickable(clickWidth, clickHeight, x - (clickWidth / 2), y - fontSize, this.onClick.bind(this, item));
+      const clickable = new Clickable(x - (clickWidth / 2), y - fontSize, clickWidth, clickHeight, this.onClick.bind(this, item));
 
       clickable.render();
 
