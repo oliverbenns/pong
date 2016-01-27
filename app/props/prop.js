@@ -17,8 +17,8 @@ export default class Prop {
   }
 
   spawn(positionX, positionY) {
-    this.positionX = positionX;
-    this.positionY = positionY;
+    this.positionX = positionX || this.positionX;
+    this.positionY = positionY || this.positionY;
 
     this.draw(constants.COLORS.PROPS);
   }
