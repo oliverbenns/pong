@@ -21,6 +21,7 @@ export default class Game {
     playerTwo.spawn(canvas.width - 15, 50);
     // net.spawn();
     ball.spawn();
+    ball.fire();
 
     mouse.onMove((x, y) => playerOne.moveTo(y));
   }
