@@ -12,7 +12,6 @@ export default class Ball extends Prop {
   }
 
   fire() {
-    console.log('this in Ball class', this);
     setInterval(() => {
       this.move(1, 1);
     }, 10);
