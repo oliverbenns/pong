@@ -42,13 +42,14 @@ export default class Ball extends Prop {
 
   fire() {
     const direction = coords.northWest;
-
-    const move = setInterval(() => {
+    const move = () => {
       this.move(direction.x, direction.y);
-      if (this.isOutOfBounds()) {
-        console.log('Stopping ball, out of bounds');
-        clearInterval(move);
+
+      if (!this.isOutOfBounds()) {
+        return requestAnimationFrame(move);
       }
-    }, 10);
+    };
+
+    requestAnimationFrame(move);
   }
 }
