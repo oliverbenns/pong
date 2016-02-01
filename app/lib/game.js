@@ -40,6 +40,11 @@ export default class Game {
     var subscription = events.subscribe('ballMove', (ball) => {
 
 
+      if(collision.isColliding(ball, this.players[0])) {
+        console.log('collision detected');
+      }
+
+      console.log('this.ball', this.ball);
 
       if (collision.isOutOfBounds(ball)) {
         this.endRound();
