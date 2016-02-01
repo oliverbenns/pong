@@ -3,22 +3,22 @@ import canvas from 'canvas';
 
 export default class Prop {
   constructor(x, y, width, height) {
-    this.positionX = x || 0;
-    this.positionY = y || 0;
+    this.x = x || 0;
+    this.y = y || 0;
     this.width = width;
     this.height = height;
   }
 
   draw(color) {
     canvas.context.beginPath();
-    canvas.context.rect(this.positionX, this.positionY, this.width, this.height);
+    canvas.context.rect(this.x, this.y, this.width, this.height);
     canvas.context.fillStyle = color;
     canvas.context.fill();
   }
 
-  spawn(positionX, positionY) {
-    this.positionX = positionX || this.positionX;
-    this.positionY = positionY || this.positionY;
+  spawn(x, y) {
+    this.x = x || this.x;
+    this.y = y || this.y;
 
     this.draw(constants.COLORS.PROPS);
   }
@@ -30,9 +30,9 @@ export default class Prop {
   move(x, y) {
     this.delete();
 
-    this.positionX += x;
-    this.positionY += y;
-    this.spawn(this.positionX, this.positionY);
+    this.x += x;
+    this.y += y;
+    this.spawn(this.x, this.y);
   }
 
   moveTo(x, y) {

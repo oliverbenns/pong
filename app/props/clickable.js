@@ -25,7 +25,7 @@ export default class Clickable extends Prop {
   }
 
   render() {
-    this.draw(this.positionX, this.positionY);
+    this.draw(this.x, this.y);
     canvas.addEventListener('click', this.onClick);
   }
 
@@ -34,6 +34,6 @@ export default class Clickable extends Prop {
   }
 
   isPointInside(x, y) {
-    return (x >= this.positionX && x <= this.positionX + this.width && y >= this.positionY && y <= this.positionY + this.height);
+    return (x >= this.x && x <= this.x + this.width && y >= this.y && y <= this.y + this.height);
   }
 }

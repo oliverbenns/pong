@@ -15,6 +15,6 @@ export default class Player extends Prop {
   moveTo(y) {
     const maxY = canvas.height - this.height;
 
-    super.moveTo(this.positionX, (y > maxY) ? maxY : y);
+    super.moveTo(this.x, (y > maxY) ? maxY : y);
   }
 }

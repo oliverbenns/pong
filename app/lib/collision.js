@@ -3,10 +3,10 @@ import canvas from 'canvas';
 export default {
   isOutOfBounds: function(prop) {
     return (
-      prop.positionY === canvas.height ||
-      prop.positionY === 0 ||
-      prop.positionX === canvas.width ||
-      prop.positionX === 0
+      prop.y === canvas.height ||
+      prop.y === 0 ||
+      prop.x === canvas.width ||
+      prop.x === 0
     );
   },
 
@@ -18,23 +18,23 @@ export default {
     prop1.foo = 2;
 
 
-    const AX = prop1.positionX + prop1.width;
-    const AY = prop1.positionY + prop1.height;
+    const AX = prop1.x + prop1.width;
+    const AY = prop1.y + prop1.height;
 
-    const BX = prop2.positionX + prop2.width;
-    const BY = prop2.positionY + prop2.height;
+    const BX = prop2.x + prop2.width;
+    const BY = prop2.y + prop2.height;
 
-    const onSameYAxis = (AY >= prop2.positionY && AY <= BY) || (prop1.positionY >= prop2.positionY && prop1.positionY <= BY);
-    const onSameXAxis = (AX >= prop2.positionX && AX <= BX) || (prop1.positionX >= prop2.positionX && prop1.positionX <= BX);
+    const onSameYAxis = (AY >= prop2.y && AY <= BY) || (prop1.y >= prop2.y && prop1.y <= BY);
+    const onSameXAxis = (AX >= prop2.x && AX <= BX) || (prop1.x >= prop2.x && prop1.x <= BX);
 
     return onSameYAxis && onSameXAxis;
 
     // Not sure if this is more easy to reason about. Leaving here for now.
     // return !(
-    //   AX < prop2.positionX ||
-    //   BX < prop1.positionX ||
-    //   AY < prop2.positionY ||
-    //   BY < prop1.positionY
+    //   AX < prop2.x ||
+    //   BX < prop1.x ||
+    //   AY < prop2.y ||
+    //   BY < prop1.y
     // );
   },
 
