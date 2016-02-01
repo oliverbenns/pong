@@ -3,26 +3,47 @@ import Ball from 'props/ball';
 import Net from 'props/net';
 import canvas from 'canvas';
 import mouse from 'lib/mouse';
+import events from 'lib/events';
+import collision from 'lib/collision';
 
 export default class Game {
   constructor() {
     canvas.clear();
-    this.score = {
-      playerOne: 0,
-      playerTwo: 0,
-    };
+    this.players = [
+      new Player(),
+      new Player(),
+    ];
 
-    const playerOne = new Player();
-    const playerTwo = new Player();
-    const net = new Net();
-    const ball = new Ball();
+    this.score = [0, 0];
 
-    playerOne.spawn(5, 50);
-    playerTwo.spawn(canvas.width - 15, 50);
-    // net.spawn();
-    ball.spawn();
-    ball.fire();
+    this.net = new Net();
+    this.ball = new Ball();
 
-    mouse.onMove((x, y) => playerOne.moveTo(y));
+    this.newRound();
+
+    mouse.onMove((x, y) => this.players[0].moveTo(y));
+  }
+
+  endRound() {
+    this.score[0] += 1;
+    console.log('this.score', this.score);
+  }
+
+  newRound() {
+    canvas.clear();
+    this.players[0].spawn(5, 50);
+    this.players[1].spawn(canvas.width - 15, 50);
+    this.net.spawn();
+    this.ball.spawn();
+    this.ball.fire();
+
+    var subscription = events.subscribe('ballMove', (ball) => {
+
+
+
+      if (collision.isOutOfBounds(ball)) {
+        this.endRound();
+      }
+    });
   }
 }

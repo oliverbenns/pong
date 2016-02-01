@@ -1,6 +1,10 @@
 import Prop from 'props/prop';
 import canvas from 'canvas';
 
+import collision from 'lib/collision';
+import events from 'lib/events';
+
+// Maybe make these coords an array so we can easily multiply without lodash _.mapValues for speed.
 const coords = {
   northEast: {
     x: 1,
@@ -28,24 +32,16 @@ export default class Ball extends Prop {
     const y = (canvas.height / 2) - (height / 2);
 
     super(x, y, width, height);
-  }
-
-  isOutOfBounds() {
-    // This will be moved into a collision detection lib at some point.
-    return (
-      this.positionY === canvas.height ||
-      this.positionY === 0 ||
-      this.positionX === canvas.width ||
-      this.positionX === 0
-    );
+    this.speed = 2;
+    this.direction = coords.northWest;
   }
 
   fire() {
-    const direction = coords.northWest;
     const move = () => {
-      this.move(direction.x, direction.y);
+      this.move(this.direction.x, this.direction.y);
+      events.publish('ballMove', this);
 
-      if (!this.isOutOfBounds()) {
+      if (!collision.isOutOfBounds(this)) {
         return requestAnimationFrame(move);
       }
     };
