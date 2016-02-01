@@ -44,8 +44,6 @@ export default class Game {
         console.log('collision detected');
       }
 
-      console.log('this.ball', this.ball);
-
       if (collision.isOutOfBounds(ball)) {
         this.endRound();
       }
