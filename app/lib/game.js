@@ -42,8 +42,9 @@ export default class Game {
       // Move AI to follow ball. A bit of calculation required to alway keep in center.
       this.players[1].moveTo(ball.y - ((this.players[1].height / 2) - (ball.height / 2)));
 
-      if(collision.isColliding(ball, this.players[0])) {
-        console.log('collision detected');
+
+      if (collision.isColliding(ball, this.players[0]) || collision.isColliding(ball, this.players[1])) {
+        ball.updateDirection();
       }
 
       if (collision.isOutOfBounds(ball)) {

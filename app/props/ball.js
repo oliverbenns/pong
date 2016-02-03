@@ -36,6 +36,13 @@ export default class Ball extends Prop {
     this.direction = coords.northWest;
   }
 
+  updateDirection() {
+    const calculate = (num) => num <= 0 ? Math.abs(num) : -(num);
+
+    this.direction.x = calculate(this.direction.x);
+    this.direction.y = calculate(this.direction.y);
+  }
+
   fire() {
     const move = () => {
       this.move(this.direction.x, this.direction.y);
