@@ -4,26 +4,6 @@ import canvas from 'canvas';
 import collision from 'lib/collision';
 import events from 'lib/events';
 
-// Maybe make these coords an array so we can easily multiply without lodash _.mapValues for speed.
-const coords = {
-  northEast: {
-    x: 1,
-    y: -1,
-  },
-  southEast: {
-    x: 1,
-    y: 1,
-  },
-  southWest: {
-    x: -1,
-    y: 1,
-  },
-  northWest: {
-    x: -1,
-    y: -1,
-  },
-};
-
 export default class Ball extends Prop {
   constructor() {
     const width = 10;
@@ -33,7 +13,24 @@ export default class Ball extends Prop {
 
     super(x, y, width, height);
     this.speed = 2;
-    this.direction = coords.northWest;
+
+    this.createRandomDirection();
+    console.log('this.direction', this.direction);
+  }
+
+  createRandomDirection() {
+    // Generate random number from -3 - 3, not including 0.
+    function create() {
+      const number = Math.floor(Math.random() * 3) + 1;
+      const positive = !!Math.round(Math.random());
+
+      return positive ? number : -(number);
+    }
+
+    this.direction = {
+      x: create(),
+      y: create(),
+    };
   }
 
   rebound() {
