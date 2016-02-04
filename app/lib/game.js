@@ -44,7 +44,7 @@ export default class Game {
 
 
       if (collision.isColliding(ball, this.players[0]) || collision.isColliding(ball, this.players[1])) {
-        ball.updateDirection();
+        ball.rebound();
       }
 
       if (collision.isOutOfBounds(ball)) {
