@@ -2,12 +2,27 @@ import canvas from 'canvas';
 
 export default {
   isOutOfBounds: function(prop) {
-    return (
-      prop.y === canvas.height ||
-      prop.y === 0 ||
-      prop.x === canvas.width ||
-      prop.x === 0
-    );
+
+    const AX = prop.x + prop.width;
+    const AY = prop.y + prop.height;
+
+    if (prop.y === 0) {
+      return 'north';
+    }
+
+    if (AY === canvas.height) {
+      return 'south';
+    }
+
+    if (AX === canvas.width) {
+      return 'east';
+    }
+
+    if (prop.x === 0) {
+      return 'west';
+    }
+
+    return false;
   },
 
   isColliding: function(prop1, prop2) {
