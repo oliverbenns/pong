@@ -15,11 +15,11 @@ export default class Ball extends Prop {
     this.speed = 2;
 
     this.createRandomDirection();
-    console.log('this.direction', this.direction);
   }
 
   createRandomDirection() {
     // Generate random number from -3 - 3, not including 0.
+    // @TODO: Prevent Y axis from dropping the ball down straight away. Probably need limit params.
     function create() {
       const number = Math.floor(Math.random() * 3) + 1;
       const positive = !!Math.round(Math.random());
@@ -33,11 +33,15 @@ export default class Ball extends Prop {
     };
   }
 
-  rebound() {
+  rebound(reboundX, reboundY) {
     const calculate = (num) => num <= 0 ? Math.abs(num) : -(num);
 
-    this.direction.x = calculate(this.direction.x);
-    this.direction.y = calculate(this.direction.y);
+    if (reboundX) {
+      this.direction.x = calculate(this.direction.x);
+    }
+    if (reboundY) {
+      this.direction.y = calculate(this.direction.y);
+    }
   }
 
   fire() {
@@ -45,9 +49,7 @@ export default class Ball extends Prop {
       this.move(this.direction.x, this.direction.y);
       events.publish('ballMove', this);
 
-      if (!collision.isOutOfBounds(this)) {
-        return requestAnimationFrame(move);
-      }
+      return requestAnimationFrame(move);
     };
 
     requestAnimationFrame(move);
