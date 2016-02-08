@@ -29,10 +29,6 @@ export default {
     // Axis-Aligned Bounding Box Collision Detection
     // https://www.youtube.com/watch?v=ghqD3e37R7E
 
-    // I need to not mutate data. Just want it in scope of here.
-    prop1.foo = 2;
-
-
     const AX = prop1.x + prop1.width;
     const AY = prop1.y + prop1.height;
 
