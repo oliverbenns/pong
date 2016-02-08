@@ -26,6 +26,7 @@ export default class Game {
 
   endRound() {
     this.score[0] += 1;
+    console.log('endRound');
     console.log('this.score', this.score);
   }
 
@@ -44,11 +45,20 @@ export default class Game {
 
 
       if (collision.isColliding(ball, this.players[0]) || collision.isColliding(ball, this.players[1])) {
-        ball.rebound();
+        ball.rebound(true, false);
       }
 
-      if (collision.isOutOfBounds(ball)) {
-        this.endRound();
+      switch (collision.isOutOfBounds(ball)) {
+        case 'east':
+        case 'west':
+          this.endRound();
+          break;
+        case 'north':
+        case 'south':
+          ball.rebound(false, true);
+          break;
+        default:
+          break;
       }
     });
   }
