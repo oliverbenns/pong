@@ -38,11 +38,10 @@ export default class Game {
     this.ball.spawn();
     this.ball.fire();
 
-    var subscription = events.subscribe('ballMove', (ball) => {
-
+    // I may need to name this subscription to end the listener.
+    events.subscribe('ballMove', (ball) => {
       // Move AI to follow ball. A bit of calculation required to alway keep in center.
       this.players[1].moveTo(ball.y - ((this.players[1].height / 2) - (ball.height / 2)));
-
 
       if (collision.isColliding(ball, this.players[0]) || collision.isColliding(ball, this.players[1])) {
         ball.rebound(true, false);

@@ -1,7 +1,6 @@
 import Prop from 'props/prop';
 import canvas from 'canvas';
 
-import collision from 'lib/collision';
 import events from 'lib/events';
 
 export default class Ball extends Prop {

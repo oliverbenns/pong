@@ -1,8 +1,7 @@
 import canvas from 'canvas';
 
 export default {
-  isOutOfBounds: function(prop) {
-
+  isOutOfBounds(prop) {
     const AX = prop.x + prop.width;
     const AY = prop.y + prop.height;
 
@@ -25,7 +24,7 @@ export default {
     return false;
   },
 
-  isColliding: function(prop1, prop2) {
+  isColliding(prop1, prop2) {
     // Axis-Aligned Bounding Box Collision Detection
     // https://www.youtube.com/watch?v=ghqD3e37R7E
 

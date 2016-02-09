@@ -10,7 +10,6 @@ export default class Menu {
         label: 'Play',
         onClick: () => {
           const game = new Game();
-
         },
       },
       {
