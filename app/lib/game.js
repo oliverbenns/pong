@@ -1,10 +1,12 @@
-import Player from 'props/player';
-import Ball from 'props/ball';
-import Net from 'props/net';
 import canvas from 'canvas';
 import mouse from 'lib/mouse';
 import events from 'lib/events';
 import collision from 'lib/collision';
+
+import Ball from 'props/ball';
+import Net from 'props/net';
+import Player from 'props/player';
+import ScoreBoard from 'props/scoreboard';
 
 export default class Game {
   constructor() {
@@ -14,23 +16,22 @@ export default class Game {
       new Player(),
     ];
 
-    this.score = [0, 0];
-
     this.net = new Net();
     this.ball = new Ball();
-
-    this.newRound();
+    this.scoreboard = new ScoreBoard();
 
     mouse.onMove((x, y) => this.players[0].moveTo(y));
   }
 
-  endRound() {
-    this.score[0] += 1;
-    console.log('endRound');
-    console.log('this.score', this.score);
+  endRound(score) {
+    this.scoreboard.update(score);
   }
 
   newRound() {
+    this.ball.fire();
+  }
+
+  start() {
     canvas.clear();
     this.players[0].spawn(5, 50);
     this.players[1].spawn(canvas.width - 15, 50);
@@ -40,17 +41,22 @@ export default class Game {
 
     // I may need to name this subscription to end the listener.
     events.subscribe('ballMove', (ball) => {
-      // Move AI to follow ball. A bit of calculation required to alway keep in center.
+      // Move AI to follow ball. A bit of calculation required to always keep in center.
       this.players[1].moveTo(ball.y - ((this.players[1].height / 2) - (ball.height / 2)));
 
       if (collision.isColliding(ball, this.players[0]) || collision.isColliding(ball, this.players[1])) {
         ball.rebound(true, false);
+        ball.speedUp();
       }
 
       switch (collision.isOutOfBounds(ball)) {
         case 'east':
+          this.endRound([0, 1]);
+          this.newRound();
+          break;
         case 'west':
-          this.endRound();
+          this.endRound([1, 0]);
+          this.newRound();
           break;
         case 'north':
         case 'south':
