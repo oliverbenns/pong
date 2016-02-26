@@ -26,7 +26,13 @@ export default class Menu {
     this.destroy();
   }
 
-  renderItems() {
+  destroy() {
+    this.items.forEach(item => item.clickable.destroy());
+  }
+
+  render() {
+    canvas.clear();
+
     this.items.map((item, index) => {
       const x = canvas.width / 2;
       const y = 50 * (index + 1);
@@ -47,14 +53,5 @@ export default class Menu {
       item.clickable = clickable;
       return item;
     });
-  }
-
-  destroy() {
-    this.items.forEach(item => item.clickable.destroy());
-  }
-
-  render() {
-    canvas.clear();
-    this.renderItems();
   }
 }
