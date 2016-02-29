@@ -2,57 +2,37 @@ import constants from '_constants';
 import canvas from 'canvas';
 import Clickable from 'props/clickable';
 import Game from 'lib/game';
+import Prop from 'props/prop';
 
-export default class Menu {
+export default class Menu extends Prop {
   constructor() {
-    this.items = [
-      {
-        label: 'Play',
-        onClick: () => {
-          const game = new Game();
-          game.start();
-        },
-      },
-      {
-        label: 'Settings',
-        onClick: () => {
-          console.log('Go to settings page');
-        },
-      },
-    ];
+    super(0, 0, canvas.width, canvas.height);
+
+    this.clickable = new Clickable(this.x, this.y, this.width, this.height, this.onClick.bind(this));
   }
 
-  onClick(item) {
-    item.onClick();
+  onClick() {
+    const game = new Game();
+    game.start();
     this.destroy();
   }
 
   destroy() {
-    this.items.forEach(item => item.clickable.destroy());
+    this.clickable.destroy();
   }
 
   render() {
+    const fontSize = 48;
+    const fontX = this.width / 2;
+    const fontY = this.height / 2;
+
     canvas.clear();
 
-    this.items.map((item, index) => {
-      const x = canvas.width / 2;
-      const y = 50 * (index + 1);
+    this.clickable.render();
 
-      const fontSize = 24;
-      const clickHeight = fontSize * 1.5;
-      const clickWidth = 150;
-
-      const clickable = new Clickable(x - (clickWidth / 2), y - fontSize, clickWidth, clickHeight, this.onClick.bind(this, item));
-
-      clickable.render();
-
-      canvas.context.font = `${fontSize}px Helvetica`;
-      canvas.context.textAlign = 'center';
-      canvas.context.fillStyle = constants.COLORS.PROPS;
-      canvas.context.fillText(item.label, x, y);
-
-      item.clickable = clickable;
-      return item;
-    });
+    canvas.context.font = `${fontSize}px Helvetica`;
+    canvas.context.textAlign = 'center';
+    canvas.context.fillStyle = constants.COLORS.PROPS;
+    canvas.context.fillText('Play', fontX, fontY);
   }
 }

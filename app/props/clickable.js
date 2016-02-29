@@ -12,8 +12,7 @@ export default class Clickable extends Prop {
   }
 
   draw() {
-    super.draw('red');
-    // super.draw('rgba(0, 0, 0, 0)');
+    super.draw('rgba(0, 0, 0, 0)');
   }
 
   onClick(event) {
