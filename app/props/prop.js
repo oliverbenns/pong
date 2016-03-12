@@ -16,7 +16,7 @@ export default class Prop {
     canvas.context.fill();
   }
 
-  spawn(x, y) {
+  render(x, y) {
     this.x = x || this.x;
     this.y = y || this.y;
 
