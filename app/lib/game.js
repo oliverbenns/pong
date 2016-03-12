@@ -11,16 +11,13 @@ import ScoreBoard from 'props/scoreboard';
 export default class Game {
   constructor() {
     canvas.clear();
-    this.players = [
-      new Player(),
-      new Player(),
-    ];
-
-    this.net = new Net();
     this.ball = new Ball();
+    this.player = new Player(5, 50);
+    this.computer = new Player(canvas.width - 15, this.ball.y);
+    this.net = new Net();
     this.scoreboard = new ScoreBoard();
 
-    mouse.onMove((x, y) => this.players[0].moveTo(y));
+    mouse.onMove((x, y) => this.player.moveTo(y));
   }
 
   endRound(score) {
@@ -31,38 +28,31 @@ export default class Game {
     console.log('start a new round!');
   }
 
-  start() {
+  updatePositions() {
+    this.computer.moveTo(this.ball.y - ((this.computer.height / 2) - (this.ball.height / 2)));
+    this.ball.move(this.ball.direction.x, this.ball.direction.y);
+  }
+
+  renderFrame() {
     canvas.clear();
-
-    // We should set these in the constructor.
-    this.players[0].render(5, 50);
-    this.players[1].render(canvas.width - 15, this.ball.y);
-
+    this.player.render();
+    this.computer.render();
     this.net.render();
     this.ball.render();
-    this.scoreboard.render();
+  }
 
+  start() {
     const setFrame = () => {
       const { ball } = this;
-      canvas.clear();
 
-      this.players[0].render();
+      this.updatePositions();
+      this.renderFrame();
 
-      this.players[1]
-        .moveTo(ball.y - ((this.players[1].height / 2) - (ball.height / 2)))
-        .render();
-
-      this.net.render();
-
-      if (collision.isColliding(ball, this.players[0]) || collision.isColliding(ball, this.players[1])) {
+      if (collision.isColliding(ball, this.player) || collision.isColliding(ball, this.computer)) {
         ball
           .rebound(true, false)
           .speedUp();
       }
-
-      ball
-        .move(this.ball.direction.x, this.ball.direction.y)
-        .render();
 
       switch (collision.isOutOfBounds(ball)) {
         case 'east':
@@ -85,7 +75,7 @@ export default class Game {
     // Move AI to follow ball. A bit of calculation required to always keep in center.
 
     const newFrame = () => {
-      setFrame(this.ball);
+      setFrame();
 
       return requestAnimationFrame(newFrame);
     };
