@@ -8,13 +8,13 @@ export default class Player extends Prop {
 
   // Players can only move Y axis.
   move(y) {
-    super.move(0, y);
+    return super.move(0, y);
   }
 
   // For mouse move.
   moveTo(y) {
     const maxY = canvas.height - this.height;
 
-    super.moveTo(this.x, (y > maxY) ? maxY : y);
+    return super.moveTo(this.x, (y > maxY) ? maxY : y);
   }
 }

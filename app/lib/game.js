@@ -33,27 +33,36 @@ export default class Game {
 
   start() {
     canvas.clear();
+
+    // We should set these in the constructor.
     this.players[0].render(5, 50);
-    this.players[1].render(canvas.width - 15, 50);
+    this.players[1].render(canvas.width - 15, this.ball.y);
+
     this.net.render();
     this.ball.render();
     this.scoreboard.render();
 
-    const setFrame = (ball) => {
+    const setFrame = () => {
+      const { ball } = this;
       canvas.clear();
-      this.players[1].moveTo(ball.y - ((this.players[1].height / 2) - (ball.height / 2)));
 
       this.players[0].render();
-      this.players[1].render();
+
+      this.players[1]
+        .moveTo(ball.y - ((this.players[1].height / 2) - (ball.height / 2)))
+        .render();
+
       this.net.render();
 
       if (collision.isColliding(ball, this.players[0]) || collision.isColliding(ball, this.players[1])) {
-        ball.rebound(true, false);
-        ball.speedUp();
+        ball
+          .rebound(true, false)
+          .speedUp();
       }
 
-      this.ball.move(this.ball.direction.x, this.ball.direction.y);
-      this.ball.render();
+      ball
+        .move(this.ball.direction.x, this.ball.direction.y)
+        .render();
 
       switch (collision.isOutOfBounds(ball)) {
         case 'east':

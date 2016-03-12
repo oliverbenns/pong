@@ -41,11 +41,15 @@ export default class Ball extends Prop {
     if (reboundY) {
       this.direction.y = calculate(this.direction.y);
     }
+
+    return this;
   }
 
   speedUp() {
-    this.speed += 0.1;
     // Stop the floating point number issue (if it is even an issue.)
+    this.speed += 0.1;
     console.log('this.speed', this.speed);
+
+    return this;
   }
 }

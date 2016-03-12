@@ -30,10 +30,14 @@ export default class Prop {
   move(x, y) {
     this.x += x;
     this.y += y;
+
+    return this;
   }
 
   moveTo(x, y) {
     this.x = x;
     this.y = y;
+
+    return this;
   }
 }
