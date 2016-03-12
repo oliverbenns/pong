@@ -28,15 +28,12 @@ export default class Prop {
   }
 
   move(x, y) {
-    this.delete();
-
     this.x += x;
     this.y += y;
-    this.spawn(this.x, this.y);
   }
 
   moveTo(x, y) {
-    this.delete();
-    this.spawn(x, y);
+    this.x = x;
+    this.y = y;
   }
 }

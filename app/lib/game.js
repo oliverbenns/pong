@@ -28,7 +28,7 @@ export default class Game {
   }
 
   newRound() {
-    this.ball.fire();
+    console.log('start a new round!');
   }
 
   start() {
@@ -37,17 +37,23 @@ export default class Game {
     this.players[1].spawn(canvas.width - 15, 50);
     this.net.spawn();
     this.ball.spawn();
-    this.ball.fire();
+    this.scoreboard.render();
 
-    // I may need to name this subscription to end the listener.
-    events.subscribe('ballMove', (ball) => {
-      // Move AI to follow ball. A bit of calculation required to always keep in center.
+    const setFrame = (ball) => {
+      canvas.clear();
       this.players[1].moveTo(ball.y - ((this.players[1].height / 2) - (ball.height / 2)));
+
+      this.players[0].spawn();
+      this.players[1].spawn();
+      this.net.spawn();
 
       if (collision.isColliding(ball, this.players[0]) || collision.isColliding(ball, this.players[1])) {
         ball.rebound(true, false);
         ball.speedUp();
       }
+
+      this.ball.move(this.ball.direction.x, this.ball.direction.y);
+      this.ball.spawn();
 
       switch (collision.isOutOfBounds(ball)) {
         case 'east':
@@ -65,6 +71,16 @@ export default class Game {
         default:
           break;
       }
-    });
+    };
+
+    // Move AI to follow ball. A bit of calculation required to always keep in center.
+
+    const newFrame = () => {
+      setFrame(this.ball);
+
+      return requestAnimationFrame(newFrame);
+    };
+
+    requestAnimationFrame(newFrame);
   }
 }

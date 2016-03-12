@@ -11,7 +11,7 @@ export default class Ball extends Prop {
     const y = (canvas.height / 2) - (height / 2);
 
     super(x, y, width, height);
-    this.speed = 2;
+    this.speed = 1.0;
 
     this.createRandomDirection();
   }
@@ -43,14 +43,9 @@ export default class Ball extends Prop {
     }
   }
 
-  fire() {
-    const move = () => {
-      this.move(this.direction.x, this.direction.y);
-      events.publish('ballMove', this);
-
-      return requestAnimationFrame(move);
-    };
-
-    requestAnimationFrame(move);
+  speedUp() {
+    this.speed += 0.1;
+    // Stop the floating point number issue (if it is even an issue.)
+    console.log('this.speed', this.speed);
   }
 }
