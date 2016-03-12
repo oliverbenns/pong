@@ -1,6 +1,5 @@
 import canvas from 'canvas';
 import mouse from 'lib/mouse';
-import events from 'lib/events';
 import collision from 'lib/collision';
 
 import Ball from 'props/ball';

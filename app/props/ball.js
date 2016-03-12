@@ -1,8 +1,6 @@
 import Prop from 'props/prop';
 import canvas from 'canvas';
 
-import events from 'lib/events';
-
 export default class Ball extends Prop {
   constructor() {
     const width = 10;
