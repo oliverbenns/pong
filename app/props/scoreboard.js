@@ -8,8 +8,6 @@ export default class ScoreBoard {
 
   update(addScore) {
     this.score = this.score.map((score, index) => score + addScore[index]);
-    console.log('this.score', this.score);
-    this.render();
 
     return this.score;
   }
