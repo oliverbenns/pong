@@ -35,7 +35,7 @@ export default class Game {
   renderFrame() {
     canvas.clear();
 
-    [this.player, this.computer, this.net, this.ball].forEach((prop) => prop.render());
+    [this.player, this.computer, this.net, this.scoreboard, this.ball].forEach((prop) => prop.render());
   }
 
   start() {
