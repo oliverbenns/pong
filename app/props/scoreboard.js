@@ -13,8 +13,6 @@ export default class ScoreBoard {
   }
 
   render() {
-    canvas.clear();
-
     this.score.map((score, index) => {
       const x = (canvas.width / 4) * (index === 0 ? 1 : 3);
       const y = 50;
