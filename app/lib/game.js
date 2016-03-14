@@ -39,7 +39,7 @@ export default class Game {
   }
 
   start() {
-    const setFrame = () => {
+    const newFrame = () => {
       const { ball } = this;
 
       this.updatePositions();
@@ -55,11 +55,11 @@ export default class Game {
         case 'east':
           this.endRound([0, 1]);
           this.newRound();
-          break;
+          return cancelAnimationFrame(newFrame);
         case 'west':
           this.endRound([1, 0]);
           this.newRound();
-          break;
+          return cancelAnimationFrame(newFrame);
         case 'north':
         case 'south':
           ball.rebound(false, true);
@@ -67,12 +67,6 @@ export default class Game {
         default:
           break;
       }
-    };
-
-    // Move AI to follow ball. A bit of calculation required to always keep in center.
-
-    const newFrame = () => {
-      setFrame();
 
       return requestAnimationFrame(newFrame);
     };
