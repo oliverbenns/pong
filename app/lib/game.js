@@ -25,6 +25,8 @@ export default class Game {
 
   newRound() {
     console.log('start a new round!');
+    this.ball.reset();
+    this.start();
   }
 
   updatePositions() {

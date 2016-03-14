@@ -11,6 +11,11 @@ export default class Ball extends Prop {
     super(x, y, width, height);
     this.speed = 1.0;
 
+    this.initialCoords = {
+      x,
+      y,
+    };
+
     this.createRandomDirection();
   }
 
@@ -49,5 +54,10 @@ export default class Ball extends Prop {
     console.log('this.speed', this.speed);
 
     return this;
+  }
+
+  reset() {
+    this.x = this.initialCoords.x;
+    this.y = this.initialCoords.y;
   }
 }
