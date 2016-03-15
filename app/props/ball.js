@@ -9,11 +9,12 @@ export default class Ball extends Prop {
     const y = (canvas.height / 2) - (height / 2);
 
     super(x, y, width, height);
-    this.speed = 1.0;
+    this.speed = 1;
 
-    this.initialCoords = {
+    this.initial = {
       x,
       y,
+      speed: this.speed,
     };
 
     this.createRandomDirection();
@@ -57,7 +58,8 @@ export default class Ball extends Prop {
   }
 
   reset() {
-    this.x = this.initialCoords.x;
-    this.y = this.initialCoords.y;
+    this.x = this.initial.x;
+    this.y = this.initial.y;
+    this.speed = this.initial.speed;
   }
 }
