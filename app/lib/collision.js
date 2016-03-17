@@ -5,19 +5,19 @@ export default {
     const AX = prop.x + prop.width;
     const AY = prop.y + prop.height;
 
-    if (prop.y === 0) {
+    if (prop.y <= 0) {
       return 'north';
     }
 
-    if (AY === canvas.height) {
+    if (AY >= canvas.height) {
       return 'south';
     }
 
-    if (AX === canvas.width) {
+    if (AX >= canvas.width) {
       return 'east';
     }
 
-    if (prop.x === 0) {
+    if (prop.x <= 0) {
       return 'west';
     }
 
