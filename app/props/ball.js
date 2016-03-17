@@ -51,8 +51,7 @@ export default class Ball extends Prop {
 
   speedUp() {
     // Stop the floating point number issue (if it is even an issue.)
-    this.speed += 0.1;
-    console.log('this.speed', this.speed);
+    this.speed += 0.33;
 
     return this;
   }
@@ -61,5 +60,10 @@ export default class Ball extends Prop {
     this.x = this.initial.x;
     this.y = this.initial.y;
     this.speed = this.initial.speed;
+  }
+
+  move(x, y) {
+    // This creates a LOT of FPS issues due to the way game.js is handling frames.
+    super.move(x * this.speed, y * this.speed);
   }
 }
