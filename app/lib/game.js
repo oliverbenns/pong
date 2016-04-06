@@ -7,6 +7,8 @@ import Net from 'props/net';
 import Player from 'props/player';
 import ScoreBoard from 'props/scoreboard';
 
+import sound from 'lib/sound';
+
 export default class Game {
   constructor() {
     canvas.clear();
@@ -48,6 +50,7 @@ export default class Game {
       this.renderFrame();
 
       if (collision.isColliding(ball, this.player) || collision.isColliding(ball, this.computer)) {
+        sound.highShort.play();
         ball
           .rebound(true, false)
           .speedUp();
@@ -56,14 +59,17 @@ export default class Game {
       switch (collision.isOutOfBounds(ball)) {
         case 'east':
           this.endRound([0, 1]);
+          sound.highLong.play();
           this.newRound();
           return cancelAnimationFrame(newFrame);
         case 'west':
           this.endRound([1, 0]);
+          sound.highLong.play();
           this.newRound();
           return cancelAnimationFrame(newFrame);
         case 'north':
         case 'south':
+          sound.lowShort.play();
           ball.rebound(false, true);
           break;
         default:
