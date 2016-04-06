@@ -34,6 +34,10 @@ module.exports = {
         },
         loader: 'babel',
       },
+      {
+        test: /\.mp3$/,
+        loader: 'file',
+      },
     ],
   },
 };
