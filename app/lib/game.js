@@ -33,7 +33,7 @@ export default class Game {
   }
 
   updatePositions() {
-    this.computer.moveTo(this.ball.y - ((this.computer.height / 2) - (this.ball.height / 2)));
+    this.computer.moveTo();
     this.ball.move(this.ball.direction.x, this.ball.direction.y);
   }
 
