@@ -1,5 +1,4 @@
 import canvas from 'canvas';
-import mouse from 'lib/mouse';
 import collision from 'lib/collision';
 
 import Ai from 'props/ai';
@@ -18,8 +17,6 @@ export default class Game {
     this.computer = new Ai(this.ball);
     this.net = new Net();
     this.scoreboard = new ScoreBoard();
-
-    mouse.onMove((x, y) => this.player.moveTo(y));
   }
 
   endRound(score) {
