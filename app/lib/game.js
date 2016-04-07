@@ -2,6 +2,7 @@ import canvas from 'canvas';
 import mouse from 'lib/mouse';
 import collision from 'lib/collision';
 
+import Ai from 'props/ai';
 import Ball from 'props/ball';
 import Net from 'props/net';
 import Player from 'props/player';
@@ -13,8 +14,8 @@ export default class Game {
   constructor() {
     canvas.clear();
     this.ball = new Ball();
-    this.player = new Player(5, 50);
-    this.computer = new Player(canvas.width - 15, this.ball.y);
+    this.player = new Player();
+    this.computer = new Ai(this.ball);
     this.net = new Net();
     this.scoreboard = new ScoreBoard();
 

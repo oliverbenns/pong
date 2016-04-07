@@ -1,12 +1,13 @@
 import Paddle from 'props/paddle';
 import canvas from 'canvas';
 
-export default class Player extends Paddle {
-  constructor() {
-    super(5, 50);
+export default class Ai extends Paddle {
+  constructor(ball) {
+    super(canvas.width - 15, ball);
+    this.ball = ball; // @TODO: Make Move function always follow this.
   }
 
-  // For mouse move.
+  // For move to ball.
   moveTo(y) {
     const maxY = canvas.height - this.height;
 
