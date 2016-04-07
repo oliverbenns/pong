@@ -58,12 +58,12 @@ export default class Game {
 
       switch (collision.isOutOfBounds(ball)) {
         case 'east':
-          this.endRound([0, 1]);
+          this.endRound([1, 0]);
           sound.highLong.play();
           this.newRound();
           return cancelAnimationFrame(newFrame);
         case 'west':
-          this.endRound([1, 0]);
+          this.endRound([0, 1]);
           sound.highLong.play();
           this.newRound();
           return cancelAnimationFrame(newFrame);
