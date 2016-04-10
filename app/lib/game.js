@@ -19,6 +19,10 @@ export default class Game {
     this.scoreboard = new ScoreBoard();
   }
 
+  endGame() {
+    this.player.destroy();
+  }
+
   endRound(score) {
     this.scoreboard.update(score);
   }

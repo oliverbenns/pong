@@ -11,11 +11,4 @@ mouse.getCoordinates = (event) => {
   };
 };
 
-mouse.onMove = (fn) => {
-  canvas.addEventListener('mousemove', (event) => {
-    const coords = mouse.getCoordinates(event);
-    fn(coords.x, coords.y);
-  }, false);
-};
-
 export default mouse;
