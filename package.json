@@ -10,6 +10,7 @@
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^2.1.1",
     "file-loader": "^0.8.5",
+    "pre-commit": "^1.1.2",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   },
@@ -19,6 +20,9 @@
     "lint": "eslint app/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/oliverbenns/pong.git"
