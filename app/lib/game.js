@@ -33,8 +33,8 @@ export default class Game {
   }
 
   updatePositions() {
-    this.computer.moveTo();
     this.ball.move(this.ball.direction.x, this.ball.direction.y);
+    this.computer.move();
   }
 
   renderFrame() {
