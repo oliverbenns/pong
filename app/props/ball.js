@@ -17,22 +17,21 @@ export default class Ball extends Prop {
       speed: this.speed,
     };
 
-    this.createRandomDirection();
+    this.updateToRandomDirection();
   }
 
-  createRandomDirection() {
-    // Generate random number from -3 - 3, not including 0.
-    // @TODO: Prevent Y axis from dropping the ball down straight away. Probably need limit params.
-    function create() {
-      const number = Math.floor(Math.random() * 3) + 1;
+  updateToRandomDirection() {
+    // @TODO: This could be smarter.. what even is minMax? Do we need that value?
+    function calculateRandomDirection(minMax) {
+      const number = (Math.random() * minMax) + 1;
       const positive = !!Math.round(Math.random());
 
       return positive ? number : -(number);
     }
 
     this.direction = {
-      x: create(),
-      y: create(),
+      x: calculateRandomDirection(2),
+      y: calculateRandomDirection(1),
     };
   }
 
