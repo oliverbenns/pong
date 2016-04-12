@@ -59,6 +59,7 @@ export default class Ball extends Prop {
     this.x = this.initial.x;
     this.y = this.initial.y;
     this.speed = this.initial.speed;
+    this.updateToRandomDirection();
   }
 
   move(x, y) {
