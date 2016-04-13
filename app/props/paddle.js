@@ -4,16 +4,16 @@ import canvas from 'canvas';
 export default class Paddle extends Prop {
   constructor(x, y) {
     super(x, y, 10, 60);
+    this.maxY = canvas.height - this.height;
   }
 
-  // Players can only move Y axis.
   move(y) {
-    return super.move(0, y);
+    const willBeOutOfBounds = this.y + y >= this.maxY;
+
+    return super.move(0, willBeOutOfBounds ? 0 : y);
   }
 
   moveTo(y) {
-    const maxY = canvas.height - this.height;
-
-    return super.moveTo(this.x, (y > maxY) ? maxY : y);
+    return super.moveTo(this.x, (y > this.maxY) ? this.maxY : y);
   }
 }
