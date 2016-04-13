@@ -10,16 +10,9 @@ export default class Ai extends Paddle {
 
   move() {
     const centerBallPoint = this.ball.y - (this.ball.height / 2);
-
-    if (this.y < centerBallPoint) {
-      console.log('paddle is higher than ball');
-      const distanceToBall = centerBallPoint - this.y;
-      super.move(distanceToBall < this.speed ? distanceToBall : this.speed);
-    }
-
-    // Ai is lower than ball
     const distanceToBall = centerBallPoint - this.y;
-    console.log('paddle is lower than ball');
-    super.move(distanceToBall < this.speed ? distanceToBall : this.speed);
+    const speed = distanceToBall > 0 ? this.speed : -(this.speed);
+
+    return super.move(distanceToBall < speed ? distanceToBall : speed);
   }
 }
