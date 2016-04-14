@@ -1,5 +1,5 @@
-import Menu from 'props/menu';
+import Screen from 'props/screen';
 
-const menu = new Menu();
+const screen = new Screen();
 
-menu.render();
+screen.render();
