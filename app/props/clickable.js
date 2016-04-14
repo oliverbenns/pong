@@ -20,6 +20,7 @@ export default class Clickable extends Prop {
 
     if (this.isPointInside(coords.x, coords.y)) {
       this.fn();
+      this.destroy();
     }
   }
 
