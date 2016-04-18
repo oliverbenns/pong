@@ -1,4 +1,5 @@
 import canvas from 'canvas';
+import constants from '_constants';
 import Game from 'lib/game';
 import Prop from 'props/prop';
 import Button from 'props/button';
@@ -31,7 +32,7 @@ export default class Screen extends Prop {
 
     canvas.context.font = `${fontSize}px Helvetica`;
     canvas.context.textAlign = 'center';
-    canvas.context.fillStyle = 'constants.COLORS.PROPS';
+    canvas.context.fillStyle = constants.COLORS.PROPS;
     canvas.context.textBaseline = 'middle';
     canvas.context.fillText(this.label, fontX, fontY);
   }
@@ -39,13 +40,10 @@ export default class Screen extends Prop {
   render() {
     canvas.clear();
 
-
-    this.button.render();
-
-    // @TODO: Why cant this go above?
     if (this.label) {
-      console.log('testing...');
       this.renderLabel();
     }
+
+    this.button.render();
   }
 }
