@@ -9,22 +9,14 @@ export default class Prop {
     this.height = height;
   }
 
-  draw(color) {
-    canvas.context.beginPath();
-    canvas.context.rect(this.x, this.y, this.width, this.height);
-    canvas.context.fillStyle = color;
-    canvas.context.fill();
-  }
-
-  render(x, y) {
+  render(x, y, color) {
     this.x = x || this.x;
     this.y = y || this.y;
 
-    this.draw(constants.COLORS.PROPS);
-  }
-
-  delete() {
-    this.draw(constants.COLORS.BACKGROUND);
+    canvas.context.beginPath();
+    canvas.context.rect(this.x, this.y, this.width, this.height);
+    canvas.context.fillStyle = color || constants.COLORS.PROPS;
+    canvas.context.fill();
   }
 
   move(x, y) {

@@ -11,10 +11,6 @@ export default class Clickable extends Prop {
     this.onClick = this.onClick.bind(this);
   }
 
-  draw() {
-    super.draw('rgba(0, 0, 0, 0)');
-  }
-
   onClick(event) {
     const coords = mouse.getCoordinates(event);
 
@@ -25,8 +21,10 @@ export default class Clickable extends Prop {
   }
 
   render() {
-    this.draw(this.x, this.y);
     canvas.addEventListener('click', this.onClick);
+
+    // @TODO: Remove this debug when complete.
+    super.render(null, null, 'rgba(50, 50, 50, 1)');
   }
 
   destroy() {
