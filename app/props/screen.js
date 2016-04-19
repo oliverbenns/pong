@@ -7,15 +7,17 @@ import Button from 'props/button';
 export default class Screen extends Prop {
   constructor(cta, label) {
     const buttonHeight = 100;
+    const buttonY = (label ? (canvas.height * 0.66) : (canvas.height / 2)) - (buttonHeight / 2);
 
     super(0, 0, canvas.width, canvas.height);
     this.label = label;
 
     this.button = new Button(
-      (canvas.height / 2) - (buttonHeight / 2),
+      buttonY,
       200,
       buttonHeight,
       cta || 'Play',
+      this.label ? 27 : 48,
       this.onClick.bind(this)
     );
   }
@@ -26,9 +28,9 @@ export default class Screen extends Prop {
   }
 
   renderLabel() {
-    const fontSize = 32;
+    const fontSize = 60;
     const fontX = canvas.width / 2;
-    const fontY = 50;
+    const fontY = canvas.height / 2 - (fontSize / 2);
 
     canvas.context.font = `${fontSize}px Helvetica`;
     canvas.context.textAlign = 'center';
