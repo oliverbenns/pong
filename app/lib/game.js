@@ -21,19 +21,23 @@ export default class Game {
     this.scoreboard = new ScoreBoard();
   }
 
-  endGame(score) {
+  endGame() {
     this.player.destroy();
-    const screen = new Screen('Restart', `You ${score[0] === constants.WINNING_SCORE ? 'Win' : 'Lose'}!`);
+    const screen = new Screen('Restart', `You ${this.player.score === constants.WINNING_SCORE ? 'Win' : 'Lose'}!`);
     screen.render();
   }
 
-  endRound(score) {
-    this.scoreboard.update(score);
+  endRound() {
+    this.scoreboard.update([this.player.score, this.computer.score]);
+    sound.highLong.play();
+
+    return this;
   }
 
   newRound() {
     this.ball.reset();
-    this.start();
+
+    return this.start();
   }
 
   updatePositions() {
@@ -63,14 +67,16 @@ export default class Game {
 
       switch (collision.isOutOfBounds(ball)) {
         case 'east':
-          this.endRound([1, 0]);
-          sound.highLong.play();
-          this.newRound();
+          this.player.score++;
+          this
+            .endRound()
+            .newRound();
           return cancelAnimationFrame(newFrame);
         case 'west':
-          this.endRound([0, 1]);
-          sound.highLong.play();
-          this.newRound();
+          this.computer.score++;
+          this
+            .endRound()
+            .newRound();
           return cancelAnimationFrame(newFrame);
         case 'north':
         case 'south':
@@ -81,13 +87,15 @@ export default class Game {
           break;
       }
 
-      if (this.scoreboard.score[0] === constants.WINNING_SCORE || this.scoreboard.score[1] === constants.WINNING_SCORE) {
-        return this.endGame(this.scoreboard.score);
+      if (this.player.score === constants.WINNING_SCORE || this.computer.score === constants.WINNING_SCORE) {
+        return this.endGame();
       }
 
       return requestAnimationFrame(newFrame);
     };
 
     requestAnimationFrame(newFrame);
+
+    return this;
   }
 }

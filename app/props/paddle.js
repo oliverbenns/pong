@@ -5,6 +5,7 @@ export default class Paddle extends Prop {
   constructor(x, y) {
     super(x, y, 10, 60);
     this.maxY = canvas.height - this.height;
+    this.score = 0;
   }
 
   move(y) {

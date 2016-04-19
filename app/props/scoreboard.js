@@ -6,8 +6,8 @@ export default class ScoreBoard {
     this.score = [0, 0];
   }
 
-  update(addScore) {
-    this.score = this.score.map((score, index) => score + addScore[index]);
+  update(newScore) {
+    this.score = newScore;
 
     return this.score;
   }
