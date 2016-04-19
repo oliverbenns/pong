@@ -23,7 +23,7 @@ export default class Game {
 
   endGame(score) {
     this.player.destroy();
-    const screen = new Screen('Restart', `Player ${score[0] === constants.WINNING_SCORE ? 'One' : 'Two'} wins!`);
+    const screen = new Screen('Restart', `You ${score[0] === constants.WINNING_SCORE ? 'Win' : 'Lose'}!`);
     screen.render();
   }
 
