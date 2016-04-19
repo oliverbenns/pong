@@ -1,11 +1,13 @@
 import canvas from 'canvas';
 import collision from 'lib/collision';
+import constants from '_constants';
 
 import Ai from 'props/ai';
 import Ball from 'props/ball';
 import Net from 'props/net';
 import Player from 'props/player';
 import ScoreBoard from 'props/scoreboard';
+import Screen from 'props/screen';
 
 import sound from 'lib/sound';
 
@@ -19,8 +21,10 @@ export default class Game {
     this.scoreboard = new ScoreBoard();
   }
 
-  endGame() {
+  endGame(score) {
     this.player.destroy();
+    const screen = new Screen('Restart', `Player ${score[0] === constants.WINNING_SCORE ? 'One' : 'Two'} wins!`);
+    screen.render();
   }
 
   endRound(score) {
@@ -75,6 +79,10 @@ export default class Game {
           break;
         default:
           break;
+      }
+
+      if (this.scoreboard.score[0] === constants.WINNING_SCORE || this.scoreboard.score[1] === constants.WINNING_SCORE) {
+        return this.endGame(this.scoreboard.score);
       }
 
       return requestAnimationFrame(newFrame);

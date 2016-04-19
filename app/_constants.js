@@ -4,4 +4,5 @@ export default {
     BACKGROUND: '#000',
     PROPS: '#FFF',
   },
+  WINNING_SCORE: 7,
 };
