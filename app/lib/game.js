@@ -16,7 +16,7 @@ export default class Game {
     canvas.clear();
     this.ball = new Ball();
     this.player = new Player();
-    this.computer = new Ai(this.ball);
+    this.ai = new Ai(this.ball);
     this.net = new Net();
     this.scoreboard = new ScoreBoard();
   }
@@ -28,7 +28,7 @@ export default class Game {
   }
 
   endRound() {
-    this.scoreboard.update([this.player.score, this.computer.score]);
+    this.scoreboard.update([this.player.score, this.ai.score]);
     sound.highLong.play();
 
     return this;
@@ -42,13 +42,13 @@ export default class Game {
 
   updatePositions() {
     this.ball.move(this.ball.direction.x, this.ball.direction.y);
-    this.computer.move();
+    this.ai.move();
   }
 
   renderFrame() {
     canvas.clear();
 
-    [this.player, this.computer, this.net, this.scoreboard, this.ball].forEach((prop) => prop.render());
+    [this.player, this.ai, this.net, this.scoreboard, this.ball].forEach((prop) => prop.render());
   }
 
   start() {
@@ -58,7 +58,7 @@ export default class Game {
       this.updatePositions();
       this.renderFrame();
 
-      if (collision.isColliding(ball, this.player) || collision.isColliding(ball, this.computer)) {
+      if (collision.isColliding(ball, this.player) || collision.isColliding(ball, this.ai)) {
         sound.highShort.play();
         ball
           .rebound(true, false)
@@ -73,7 +73,7 @@ export default class Game {
             .newRound();
           return cancelAnimationFrame(newFrame);
         case 'west':
-          this.computer.score++;
+          this.ai.score++;
           this
             .endRound()
             .newRound();
@@ -87,7 +87,7 @@ export default class Game {
           break;
       }
 
-      if (this.player.score === constants.WINNING_SCORE || this.computer.score === constants.WINNING_SCORE) {
+      if (this.player.score === constants.WINNING_SCORE || this.ai.score === constants.WINNING_SCORE) {
         return this.endGame();
       }
 
