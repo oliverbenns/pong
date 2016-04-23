@@ -22,16 +22,16 @@ export default class Ball extends Prop {
 
   updateToRandomDirection() {
     // @TODO: This could be smarter.. what even is minMax? Do we need that value?
-    function calculateRandomDirection(minMax) {
-      const number = (Math.random() * minMax) + 1;
+    function calculateRandomDirection(min, max) {
+      const number = (Math.random() * max) + min;
       const positive = !!Math.round(Math.random());
 
       return positive ? number : -(number);
     }
 
     this.direction = {
-      x: calculateRandomDirection(2),
-      y: calculateRandomDirection(1),
+      x: calculateRandomDirection(2, 2.5),
+      y: calculateRandomDirection(0.5, 0.75),
     };
   }
 
