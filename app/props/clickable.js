@@ -22,9 +22,6 @@ export default class Clickable extends Prop {
 
   render() {
     canvas.addEventListener('click', this.onClick);
-
-    // @TODO: Remove this debug when complete.
-    super.render(null, null, 'rgba(50, 50, 50, 1)');
   }
 
   destroy() {
