@@ -9,8 +9,10 @@ export default class Ai extends Paddle {
   }
 
   move() {
-    const centerBallPoint = this.ball.y - (this.ball.height / 2);
-    const distanceToBall = centerBallPoint - this.y;
+    const centerPaddlePoint = this.y + (this.height / 2);
+    const centerBallPoint = this.ball.y + (this.ball.height / 2);
+
+    const distanceToBall = centerBallPoint - centerPaddlePoint;
     const speed = distanceToBall > 0 ? this.speed : -(this.speed);
 
     return super.move(distanceToBall < speed ? distanceToBall : speed);
