@@ -5,11 +5,12 @@ export default class Paddle extends Prop {
   constructor(x, y) {
     super(x, y, 10, 60);
     this.maxY = canvas.height - this.height;
+    this.minY = 0;
     this.score = 0;
   }
 
   move(y) {
-    const willBeOutOfBounds = this.y + y >= this.maxY;
+    const willBeOutOfBounds = (this.y + y >= this.maxY) || (this.y + y <= this.minY);
 
     return super.move(0, willBeOutOfBounds ? 0 : y);
   }
