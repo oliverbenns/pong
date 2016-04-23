@@ -23,6 +23,7 @@ export default class Game {
 
   endGame() {
     this.player.destroy();
+    canvas.classList.remove('in-game');
     const screen = new Screen('Restart', `You ${this.player.score === constants.WINNING_SCORE ? 'Win' : 'Lose'}!`);
     screen.render();
   }
@@ -52,6 +53,7 @@ export default class Game {
   }
 
   start() {
+    canvas.classList.add('in-game');
     const newFrame = () => {
       const { ball } = this;
 
