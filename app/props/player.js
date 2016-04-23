@@ -4,7 +4,11 @@ import Paddle from 'props/paddle';
 
 export default class Player extends Paddle {
   constructor() {
-    super(5, 50);
+    super(5);
+
+    // Now we have the height, re-render
+    this.y = (canvas.height / 2) - (this.height / 2);
+    this.render();
 
     this.mouseHandler = this.mouseHandler.bind(this);
     canvas.addEventListener('mousemove', this.mouseHandler);
