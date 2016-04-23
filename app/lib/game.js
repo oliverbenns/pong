@@ -29,7 +29,6 @@ export default class Game {
   }
 
   endRound() {
-    this.scoreboard.update([this.player.score, this.ai.score]);
     sound.highLong.play();
 
     return this;
@@ -49,7 +48,8 @@ export default class Game {
   renderFrame() {
     canvas.clear();
 
-    [this.player, this.ai, this.net, this.scoreboard, this.ball].forEach((prop) => prop.render());
+    [this.player, this.ai, this.net, this.ball].forEach((prop) => prop.render());
+    this.scoreboard.render(this.player.score, this.ai.score);
   }
 
   start() {
