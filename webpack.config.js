@@ -24,6 +24,14 @@ module.exports = {
     ],
   },
 
+  plugins: process.env.NODE_ENV === 'build' ? [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+    }),
+  ] : null,
+
   module: {
     loaders: [
       {

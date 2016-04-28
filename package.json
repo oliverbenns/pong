@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --content-base public/ --hot --inline",
-    "build": "webpack --config webpack.config.js",
+    "build": "NODE_ENV=build webpack --config webpack.config.js",
     "lint": "eslint app/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
