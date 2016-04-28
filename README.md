@@ -1,5 +1,11 @@
 # Pong
 
-A playground project, in hope to explore the realm of HTML5 canvas.
+A playground project, which aimed to explore the realm of HTML5 canvas.
 
-[Follow the journey](http://blog.oliverbenns.com/tag/pong).
+[See the journey](http://blog.oliverbenns.com/tag/pong).
+
+## To run
+
+- `npm install`
+- `npm start`
+- Visit `localhost:8080` in your browser.
