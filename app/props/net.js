@@ -3,7 +3,7 @@ import canvas from 'canvas';
 
 export default class Net extends Prop {
   constructor() {
-    super(null, null, 8, canvas.height);
+    super(null, null, 6, canvas.height);
   }
 
   render() {
