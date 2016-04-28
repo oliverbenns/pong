@@ -3,7 +3,7 @@ import canvas from 'canvas';
 
 export default class Paddle extends Prop {
   constructor(x, y) {
-    super(x, y, 10, 60);
+    super(x, y, 8, 60);
     this.maxY = canvas.height - this.height;
     this.minY = 0;
     this.score = 0;
